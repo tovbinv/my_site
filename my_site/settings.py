@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y_5wnz7i*%3fivg46h6wjxn+jmr&6)h+az_b2^5&1sa19p7j)w'
+SECRET_KEY = getenv("MY_SITE_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv("IS_DEVELOPMENT", True)
@@ -145,8 +145,9 @@ MEDIA_URL = "/files/"
 
 AWS_STORAGE_BUCKET_NAME = 'django-blog-udemy-course'
 AWS_S3_REGION_NAME = 'ap-northeast-1'
-AWS_ACCESS_KEY_ID = 'AKIAWOIDZIJXTIA54OFQ'  # need env variable
-AWS_SECRET_ACCESS_KEY = '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'  # need env variable
+AWS_ACCESS_KEY_ID = getenv("MY_SITE_AWS_ACCESS_KEY_ID")  # need env variable
+AWS_SECRET_ACCESS_KEY = getenv(
+    "MY_SITE_AWS_SECRET_ACCESS_KEY")  # need env variable
 
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
