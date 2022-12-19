@@ -21,21 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenv("MY_SITE_SECRET_KEY")
+SECRET_KEY = 'django-insecure-y_5wnz7i*%3fivg46h6wjxn+jmr&6)h+az_b2^5&1sa19p7j)w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("IS_DEVELOPMENT", True)
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    getenv("APP_HOST", "localhost"),
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'blog',
-    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,12 +79,8 @@ WSGI_APPLICATION = 'my_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'djangoblog',
-        'PASSWORD': 'vlad1221',
-        'HOST': 'django-blog.c6hecwalfzee.ap-northeast-1.rds.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -126,7 +119,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATIC_URL = 'static/'
 
@@ -142,17 +134,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / "uploads"
 
 MEDIA_URL = "/files/"
-
-AWS_STORAGE_BUCKET_NAME = 'django-blog-udemy-course'
-AWS_S3_REGION_NAME = 'ap-northeast-1'
-AWS_ACCESS_KEY_ID = getenv("MY_SITE_AWS_ACCESS_KEY_ID")  # need env variable
-AWS_SECRET_ACCESS_KEY = getenv(
-    "MY_SITE_AWS_SECRET_ACCESS_KEY")  # need env variable
-
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-
-STATICFILES_FOLDER = 'static'
-MEDIAFILES_FOLDER = 'media'
-
-STATICFILES_STORAGE = 'custom_storages.StaticFileStorage'
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaFILESTORAGE'
